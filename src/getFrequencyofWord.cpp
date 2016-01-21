@@ -11,74 +11,31 @@ Note: Dont modify original str or word,Just return count ,Spaces can also be par
 */
 
 #include <stdlib.h>
-int strlen1(char *str)
-{
-	int i = 0;
-	while (str[i] != '\0')
-		i++;
-	return i;
-}
-
-
-int countFre(char *str, char *word, int i)
-{
-	int a = i;
-	int j = 0;
-	while (str[a] != word[j] && str[a] != '\0'){
-		if (str[a] != word[j])
-			return 0;
-		a++;
-		j++;
-	}
-	if (j == strlen1(word))
-		return 1;
-
-
-}
 int count_word_in_str_way_1(char *str, char *word){
-	int i = 0, j = 0;
-	int k = 0;
-	//i=(int *)malloc(sizeof(int));
-	while (str[i] != '\0'&&i <= strlen1(str))
+	int i = 0, j, str_len = 0, word_len = 0, temp_count = 0, count = 0;
+	for (j = 0; str[j] != '\0'; j++);
+	str_len = j;
+	for (j = 0; word[j] != '\0'; j++);
+	word_len = j;
+	while (i < str_len)
 	{
-		if (str[i] == word[j])
+		j = 0;
+		temp_count = 0;
+		while (str[i + j] == word[j] && word[j] != '\0')
 		{
-			if (countFre(str, word, i)){
-				i = i + strlen1(word);
-				k++;
-			}
-
+			temp_count++;
+			j++;
 		}
-		else
-			i++;
+		if (temp_count == word_len)
+			count++;
+		temp_count = 0;
+		i++;
 	}
-	return k;
-
+	return count;
 }
 
 int count_word_int_str_way_2_recursion(char *str, char *word){
-	int i = 0, j = 0;
-	int k = 0;
+	return 0;
 
-	if (str[i] != '\0'&&i <= strlen1(str))
-	{
-		if (str[i] == word[j])
-		{
-			if (countFre(str, word, i)){
-				i = i + strlen1(word);
-				k++;
-			}
-
-		}
-		else
-			i++;
-	}
-	if (str[i] != '\0'&&i <= strlen1(str))
-	{
-		count_word_int_str_way_2_recursion(str, word);
-
-	}
-	else
-		return k;
 }
 
